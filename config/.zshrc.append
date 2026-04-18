@@ -1,0 +1,12 @@
+# --- devbase additions ---
+
+# Load aliases and functions
+[ -f /etc/profile.d/devbase_aliases.sh ]   && source /etc/profile.d/devbase_aliases.sh
+[ -f /etc/profile.d/devbase_functions.sh ] && source /etc/profile.d/devbase_functions.sh
+
+# fnm
+export PATH="$HOME/.fnm:$PATH"
+eval "$(fnm env --use-on-cd 2>/dev/null)"
+
+# starship prompt
+eval "$(starship init zsh)"

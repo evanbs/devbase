@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+echo "=== devbase tool versions ==="
+_v() { printf "%-12s %s\n" "$1" "$( $2 2>/dev/null | head -1 || echo 'não instalado' )"; }
+_v "zsh"       "zsh --version"
+_v "git"       "git --version"
+_v "node"      "node --version"
+_v "npm"       "npm --version"
+_v "eza"       "eza --version"
+_v "bat"       "bat --version"
+_v "rg"        "rg --version"
+_v "fzf"       "fzf --version"
+_v "jq"        "jq --version"
+_v "httpyac"   "httpyac --version"
+_v "starship"  "starship --version"
+_v "fnm"       "$(find /home /root -name fnm -type f 2>/dev/null | head -1) --version"

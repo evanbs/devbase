@@ -1,0 +1,28 @@
+# devbase aliases
+
+# eza as ls replacement
+alias ls='eza --icons'
+alias ll='eza -lh --icons --git'
+alias la='eza -lah --icons --git'
+alias lt='eza --tree --icons'
+
+# bat as cat replacement
+alias cat='bat --paging=never'
+
+# git shortcuts
+alias g='git'
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
+alias gl='git log --oneline --graph --decorate'
+
+# navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# docker
+alias dk='docker'
+alias dkc='docker compose'
+alias dkps='docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"'

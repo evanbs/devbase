@@ -1,0 +1,47 @@
+{
+  "name": "{{PROJECT_NAME}}",
+  "image": "ghcr.io/evanbs/devbase:latest",
+
+  // ── Stack features (uncomment what the project needs) ──────────────────
+  "features": {
+    // "ghcr.io/devcontainers/features/java:1": { "version": "21" },
+    // "ghcr.io/devcontainers/features/python:1": { "version": "3.12" },
+    // "ghcr.io/devcontainers/features/rust:1": {},
+    // "ghcr.io/devcontainers/features/android:1": {}
+  },
+
+  // ── Forwarded ports (uncomment what the project needs) ─────────────────
+  "forwardPorts": [
+    // 3000,   // web / Next.js / React
+    // 8080,   // API / Spring Boot
+    // 5432,   // PostgreSQL
+    // 6379,   // Redis
+    // 27017   // MongoDB
+  ],
+
+  // ── VS Code extensions ──────────────────────────────────────────────────
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "EditorConfig.EditorConfig",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "eamodio.gitlens",
+        "humao.rest-client"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "editor.formatOnSave": true
+      }
+    }
+  },
+
+  // ── Post-create setup (adjust per project) ─────────────────────────────
+  "postCreateCommand": "echo 'Devcontainer ready! Run devinfo to check tools.'"
+
+  // ── Environment variables (use localEnv — never hardcode) ──────────────
+  // "remoteEnv": {
+  //   "ANTHROPIC_API_KEY": "${localEnv:ANTHROPIC_API_KEY}",
+  //   "GH_TOKEN":          "${localEnv:GH_TOKEN}"
+  // }
+}
