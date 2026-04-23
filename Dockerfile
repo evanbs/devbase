@@ -22,6 +22,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get install -y --no-install-recommends nodejs \
     && rm -rf /var/lib/apt/lists/*
 
+# bat: symlink resiliente — Debian instala como batcat em algumas versões
+RUN command -v bat >/dev/null 2>&1 || ln -sf /usr/bin/batcat /usr/local/bin/bat
+
 # eza — binário direto do release (evita instabilidade do repo deb.gierens.de)
 RUN curl -fsSL \
     "https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-gnu.tar.gz" \

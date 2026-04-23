@@ -1,6 +1,6 @@
 # devbase
 
-Imagem Docker base para desenvolvimento, construída sobre `mcr.microsoft.com/devcontainers/base:ubuntu`.
+Imagem Docker base para desenvolvimento, construída sobre `mcr.microsoft.com/devcontainers/base:debian`.
 
 Publicada em `ghcr.io/evanbs/devbase`.
 
@@ -35,6 +35,14 @@ Publicada em `ghcr.io/evanbs/devbase`.
 cp .devcontainer/devcontainer.json ~/projetos/meu-projeto/.devcontainer/
 
 # Editar: substituir {{PROJECT_NAME}}, descomentar features e portas
+```
+
+## Autenticar no GHCR
+
+A imagem é privada. É necessário autenticar uma vez por máquina antes de fazer pull:
+
+```bash
+echo $GH_TOKEN | docker login ghcr.io -u evanbs --password-stdin
 ```
 
 ## Build local
