@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/base:ubuntu
+FROM mcr.microsoft.com/devcontainers/base:debian
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -16,12 +16,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     gnupg \
     lsb-release \
     xclip \
+    git-delta \
+    p7zip-full \
     && curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
     && apt-get install -y --no-install-recommends nodejs \
     && rm -rf /var/lib/apt/lists/*
-
-# bat: symlink batcat → bat (no Ubuntu o binário se chama batcat)
-RUN ln -s /usr/bin/batcat /usr/local/bin/bat
 
 # eza — binário direto do release (evita instabilidade do repo deb.gierens.de)
 RUN curl -fsSL \
