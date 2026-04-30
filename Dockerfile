@@ -53,4 +53,9 @@ RUN chmod +x /usr/local/bin/devinfo
 RUN cat /tmp/.zshrc.append >> /home/vscode/.zshrc \
     && chown vscode:vscode /home/vscode/.zshrc
 
+# starship config (Catppuccin Frappé, baked from dev-dotfiles)
+RUN mkdir -p /home/vscode/.config
+COPY config/starship.toml /home/vscode/.config/starship.toml
+RUN chown -R vscode:vscode /home/vscode/.config
+
 USER vscode

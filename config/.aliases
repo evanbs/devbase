@@ -1,13 +1,17 @@
-# devbase aliases
+# devbase aliases — sourced from dev-dotfiles (Ansible-managed on host)
 
-# eza as ls replacement
-alias ls='eza --icons'
-alias ll='eza -lh --icons --git'
-alias la='eza -lah --icons --git'
-alias lt='eza --tree --icons'
+# eza
+alias ls='eza --icons=always --color=always --group-directories-first'
+alias l='eza --icons=always --color=always --group-directories-first --git --git-repos --long --no-permissions --no-user --no-time --no-filesize'
+alias ll='eza --icons=always --color=always --group-directories-first --git --git-repos --long --octal-permissions --header'
+alias la='eza --icons=always --color=always --group-directories-first --git --git-repos --long --octal-permissions --header --all'
+alias tree='eza --icons=always --color=always --group-directories-first --tree'
 
 # bat as cat replacement
 alias cat='bat --paging=never'
+
+# httpyac
+alias http='httpyac'
 
 # git shortcuts
 alias g='git'
@@ -21,6 +25,7 @@ alias gl='git log --oneline --graph --decorate'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias cl='clear'
 
 # docker
 alias dk='docker'
