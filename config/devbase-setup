@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Runs once on postCreateCommand; replaces {{PROJECT_NAME}} in devcontainer.json
+# Usage: devbase-setup [project-name]
+
+DEVCONTAINER=".devcontainer/devcontainer.json"
+
+if [ ! -f "$DEVCONTAINER" ] || ! grep -q '{{PROJECT_NAME}}' "$DEVCONTAINER"; then
+    exit 0
+fi
+
+PROJECT_NAME="${1:-}"
+
+if [ -z "$PROJECT_NAME" ]; then
+    echo ""
+    echo "Como se chama este projeto?"
+    read -rp "Nome: " PROJECT_NAME
+fi
+
+if [ -n "$PROJECT_NAME" ]; then
+    sed -i "s/{{PROJECT_NAME}}/$PROJECT_NAME/g" "$DEVCONTAINER"
+    echo "devcontainer.json atualizado: $PROJECT_NAME"
+else
+    echo "Nome em branco — mantendo {{PROJECT_NAME}}."
+fi

@@ -48,7 +48,8 @@ COPY config/.aliases       /etc/profile.d/devbase_aliases.sh
 COPY config/.functions     /etc/profile.d/devbase_functions.sh
 COPY config/.zshrc.append  /tmp/.zshrc.append
 COPY config/devinfo        /usr/local/bin/devinfo
-RUN chmod +x /usr/local/bin/devinfo
+COPY config/devbase-setup  /usr/local/bin/devbase-setup
+RUN chmod +x /usr/local/bin/devinfo /usr/local/bin/devbase-setup
 
 RUN cat /tmp/.zshrc.append >> /home/vscode/.zshrc \
     && chown vscode:vscode /home/vscode/.zshrc

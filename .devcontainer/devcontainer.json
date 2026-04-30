@@ -39,8 +39,8 @@
     }
   },
 
-  // ── Post-create setup (adjust per project) ─────────────────────────────
-  "postCreateCommand": "echo 'Devcontainer ready! Run devinfo to check tools.'"
+  // ── Post-create setup ──────────────────────────────────────────────────
+  "postCreateCommand": "devbase-setup"
 
   // ── Environment variables (use localEnv — never hardcode) ──────────────
   // "remoteEnv": {
