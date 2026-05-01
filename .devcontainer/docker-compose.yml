@@ -1,7 +1,12 @@
 services:
   app:
+    build:
+      context: ..
+      dockerfile: Dockerfile
     image: ghcr.io/evanbs/devbase:latest
     command: sleep infinity
+    volumes:
+      - ..:/workspaces/${localWorkspaceFolderBasename}:cached
 
   dynamodb:
     image: amazon/dynamodb-local:latest
