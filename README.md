@@ -18,6 +18,7 @@ Publicada em `ghcr.io/evanbs/devbase`.
 | fzf | Fuzzy finder interativo |
 | jq | Processador de JSON |
 | httpyac | Cliente HTTP para arquivos `.http` |
+| aws-cli v2 | AWS CLI pré-configurado para ambiente local (DynamoDB Local + MinIO) |
 | p7zip | Descompactação de múltiplos formatos |
 | xclip | Suporte a clipboard (usado por `clip`) |
 
@@ -42,9 +43,29 @@ containers/
 │   ├── devinfo           # mostra versões de todas as ferramentas
 │   ├── devbase-setup     # solicita nome do projeto no postCreateCommand
 │   └── starship.toml     # tema Catppuccin Frappé (baked from dev-dotfiles)
-└── .devcontainer/
-    └── devcontainer.json # template para novos projetos
+├── .devcontainer/
+│   └── devcontainer.json # template para novos projetos
+└── local-aws/
+    └── docker-compose.yml # DynamoDB Local + MinIO (ambiente AWS local compartilhado)
 ```
+
+## Ambiente AWS local
+
+Todos os devcontainers derivados apontam automaticamente para serviços locais de AWS via variáveis de ambiente pré-configuradas no template. Os serviços são compartilhados entre projetos e precisam ser iniciados uma única vez no host:
+
+```bash
+docker compose -f local-aws/docker-compose.yml up -d
+```
+
+| Serviço | Porta | Equivalente AWS |
+|---|---|---|
+| DynamoDB Local | 8000 | DynamoDB |
+| MinIO | 9000 | S3 |
+| MinIO console | 9001 | — |
+
+O console web do MinIO (`http://localhost:9001`) permite inspecionar buckets visualmente (user: `devlocal`, password: `devlocal`).
+
+O estado persiste via volumes Docker — dados sobrevivem a `docker compose restart`.
 
 ## Uso em projetos
 
@@ -66,6 +87,28 @@ starship.
 docker build -t devbase-local .
 docker run -it devbase-local devinfo
 ```
+
+## Testar ambiente AWS local
+
+```bash
+# 1. Subir os serviços (uma vez)
+docker compose -f local-aws/docker-compose.yml up -d
+
+# 2. Build da imagem
+docker build -t devbase-local .
+
+# 3. Testar AWS CLI contra os serviços locais
+docker run -it --rm \
+  --add-host=host.docker.internal:host-gateway \
+  -e AWS_ACCESS_KEY_ID=devlocal \
+  -e AWS_SECRET_ACCESS_KEY=devlocal \
+  -e AWS_DEFAULT_REGION=us-east-1 \
+  -e AWS_ENDPOINT_URL_DYNAMODB=http://host.docker.internal:8000 \
+  -e AWS_ENDPOINT_URL_S3=http://host.docker.internal:9000 \
+  devbase-local zsh -c "aws --version && aws dynamodb list-tables && aws s3 ls && devinfo"
+```
+
+> O `--add-host` é necessário apenas no teste manual via `docker run`. Dentro de um devcontainer o Docker Desktop resolve `host.docker.internal` automaticamente.
 
 ## Publicar manualmente
 

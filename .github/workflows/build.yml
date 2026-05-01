@@ -6,6 +6,8 @@ on:
     paths:
       - Dockerfile
       - config/**
+  schedule:
+    - cron: '0 4 * * 1'   # toda segunda-feira às 04:00 UTC — mantém aws-cli atualizado
   workflow_dispatch:
 
 env:

@@ -32,6 +32,12 @@ RUN curl -fsSL \
     && mv /tmp/eza /usr/local/bin/eza \
     && chmod +x /usr/local/bin/eza
 
+# aws-cli v2
+RUN curl -fsSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o /tmp/awscliv2.zip \
+    && unzip -q /tmp/awscliv2.zip -d /tmp \
+    && /tmp/aws/install \
+    && rm -rf /tmp/awscliv2.zip /tmp/aws
+
 # httpyac (Node já está no PATH via apt)
 RUN npm install -g httpyac
 

@@ -27,6 +27,16 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias cl='clear'
 
+# aws (DynamoDB Local :8000 / MinIO :9000 via AWS_ENDPOINT_URL_*)
+alias awsw='aws sts get-caller-identity'
+alias s3ls='aws s3 ls'
+alias s3cp='aws s3 cp'
+alias s3sync='aws s3 sync'
+alias dynls='aws dynamodb list-tables'
+alias dynget='aws dynamodb get-item'
+alias dynscan='aws dynamodb scan'
+alias dynput='aws dynamodb put-item'
+
 # docker
 alias dk='docker'
 alias dkc='docker compose'

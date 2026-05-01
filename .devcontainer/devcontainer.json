@@ -40,11 +40,17 @@
   },
 
   // ── Post-create setup ──────────────────────────────────────────────────
-  "postCreateCommand": "command -v devbase-setup >/dev/null 2>&1 && devbase-setup || true"
+  "postCreateCommand": "command -v devbase-setup >/dev/null 2>&1 && devbase-setup || true",
 
-  // ── Environment variables (use localEnv — never hardcode) ──────────────
-  // "remoteEnv": {
-  //   "ANTHROPIC_API_KEY": "${localEnv:ANTHROPIC_API_KEY}",
-  //   "GH_TOKEN":          "${localEnv:GH_TOKEN}"
-  // }
+  // ── Environment variables ──────────────────────────────────────────────
+  "remoteEnv": {
+    "AWS_ACCESS_KEY_ID":            "devlocal",
+    "AWS_SECRET_ACCESS_KEY":        "devlocal",
+    "AWS_DEFAULT_REGION":           "us-east-1",
+    "AWS_ENDPOINT_URL_DYNAMODB":    "http://host.docker.internal:8000",
+    "AWS_ENDPOINT_URL_S3":          "http://host.docker.internal:9000"
+    // Variáveis de projeto (use localEnv — nunca hardcode):
+    // "ANTHROPIC_API_KEY": "${localEnv:ANTHROPIC_API_KEY}",
+    // "GH_TOKEN":          "${localEnv:GH_TOKEN}"
+  }
 }
