@@ -2,7 +2,7 @@
   "name": "{{PROJECT_NAME}}",
   "dockerComposeFile": "docker-compose.yml",
   "service": "app",
-  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "workspaceFolder": "/workspace",
 
   // ── Stack features (uncomment what the project needs) ──────────────────
   "features": {
