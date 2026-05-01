@@ -39,7 +39,8 @@ containers/
 │   ├── .aliases          # aliases pessoais (sincronizados com dev-dotfiles)
 │   ├── .functions        # clip, mkcd, fcd, rgfzf, extract, devinfo
 │   ├── .zshrc.append     # inicialização do zsh (fnm, starship, aliases)
-│   ├── devinfo           # script de diagnóstico de ferramentas
+│   ├── devinfo           # mostra versões de todas as ferramentas
+│   ├── devbase-setup     # solicita nome do projeto no postCreateCommand
 │   └── starship.toml     # tema Catppuccin Frappé (baked from dev-dotfiles)
 └── .devcontainer/
     └── devcontainer.json # template para novos projetos
@@ -51,20 +52,13 @@ containers/
 # Copiar template de devcontainer
 cp .devcontainer/devcontainer.json ~/projetos/meu-projeto/.devcontainer/
 
-# Editar: substituir {{PROJECT_NAME}}, descomentar features e portas
+# Descomentar features e portas necessárias, depois abrir no VS Code
+# O nome do projeto será solicitado no terminal na primeira abertura
 ```
 
 O template já inclui o fix de login shell (`zsh -l`) para que o terminal
 integrado do VS Code carregue corretamente aliases, PATH do fnm e o prompt
 starship.
-
-## Autenticar no GHCR
-
-A imagem é privada. É necessário autenticar uma vez por máquina antes de fazer pull:
-
-```bash
-echo $GH_TOKEN | docker login ghcr.io -u evanbs --password-stdin
-```
 
 ## Build local
 
