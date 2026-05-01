@@ -2,8 +2,6 @@ services:
   app:
     image: ghcr.io/evanbs/devbase:latest
     command: sleep infinity
-    volumes:
-      - ..:/workspaces:cached
 
   dynamodb:
     image: amazon/dynamodb-local:latest
