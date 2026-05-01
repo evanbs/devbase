@@ -44,24 +44,37 @@ containers/
 │   ├── devbase-setup     # solicita nome do projeto no postCreateCommand
 │   └── starship.toml     # tema Catppuccin Frappé (baked from dev-dotfiles)
 ├── .devcontainer/
-│   └── devcontainer.json # template para novos projetos
+│   ├── devcontainer.json  # template para novos projetos
+│   └── docker-compose.yml # app + DynamoDB Local + MinIO (self-contained)
 └── local-aws/
-    └── docker-compose.yml # DynamoDB Local + MinIO (ambiente AWS local compartilhado)
+    └── docker-compose.yml # DynamoDB Local + MinIO para uso standalone no host WSL2
 ```
 
 ## Ambiente AWS local
-
-Todos os devcontainers derivados apontam automaticamente para serviços locais de AWS via variáveis de ambiente pré-configuradas no template. Os serviços são compartilhados entre projetos e precisam ser iniciados uma única vez no host:
-
-```bash
-docker compose -f local-aws/docker-compose.yml up -d
-```
 
 | Serviço | Porta | Equivalente AWS |
 |---|---|---|
 | DynamoDB Local | 8000 | DynamoDB |
 | MinIO | 9000 | S3 |
 | MinIO console | 9001 | — |
+
+**Dentro do devcontainer (modo normal):** os serviços sobem automaticamente junto com o container — nenhum setup manual necessário. Os endpoints resolvem por nome de serviço (`dynamodb:8000`, `minio:9000`).
+
+**No host WSL2 (sem devcontainer):** para testar a imagem localmente ou usar os aliases fora de um devcontainer, suba os serviços manualmente:
+
+```bash
+docker compose -f local-aws/docker-compose.yml up -d
+```
+
+E exporte as variáveis com `localhost` no shell do host:
+
+```bash
+export AWS_ACCESS_KEY_ID=devlocal
+export AWS_SECRET_ACCESS_KEY=devlocal
+export AWS_DEFAULT_REGION=us-east-1
+export AWS_ENDPOINT_URL_DYNAMODB=http://localhost:8000
+export AWS_ENDPOINT_URL_S3=http://localhost:9000
+```
 
 O console web do MinIO (`http://localhost:9001`) permite inspecionar buckets visualmente (user: `devlocal`, password: `devlocal`).
 
@@ -70,8 +83,10 @@ O estado persiste via volumes Docker — dados sobrevivem a `docker compose rest
 ## Uso em projetos
 
 ```bash
-# Copiar template de devcontainer
+# Copiar template de devcontainer (dois arquivos)
+mkdir -p ~/projetos/meu-projeto/.devcontainer
 cp .devcontainer/devcontainer.json ~/projetos/meu-projeto/.devcontainer/
+cp .devcontainer/docker-compose.yml ~/projetos/meu-projeto/.devcontainer/
 
 # Descomentar features e portas necessárias, depois abrir no VS Code
 # O nome do projeto será solicitado no terminal na primeira abertura
