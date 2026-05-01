@@ -40,7 +40,7 @@
   },
 
   // ── Post-create setup ──────────────────────────────────────────────────
-  "postCreateCommand": "devbase-setup"
+  "postCreateCommand": "command -v devbase-setup >/dev/null 2>&1 && devbase-setup || true"
 
   // ── Environment variables (use localEnv — never hardcode) ──────────────
   // "remoteEnv": {
