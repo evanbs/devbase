@@ -33,6 +33,9 @@
         "christian-kohler.path-intellisense",
         "sleistner.vscode-fileutils",
         "mkxml.vscode-filesize",
+        "Anthropic.claude-code",
+        "saoudrizwan.claude-dev",
+        "openai.chatgpt",
         
         // Docker
         "ms-azuretools.vscode-containers",
@@ -49,9 +52,7 @@
         "redhat.vscode-xml",
         
         // Visual
-        "naumovs.color-highlight",
         "kisstkondoros.vscode-gutter-preview",
-        "hextorgb.hex-to-rgb"
       ],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "zsh",
