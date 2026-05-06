@@ -50,3 +50,31 @@ extract() {
         *)          echo "extract: formato não suportado — $1" >&2; return 1 ;;
     esac
 }
+
+# Initialize devcontainer from devbase template
+devcontainer-init() {
+    local project_name="${1:-$(basename "$(pwd)")}"
+    local devbase_path="${DEVBASE_PATH:-$HOME/workspace/devbase}"
+    
+    if [ ! -d "$devbase_path/.devcontainer" ]; then
+        echo "❌ Erro: Template não encontrado em $devbase_path/.devcontainer" >&2
+        echo "   Configure DEVBASE_PATH ou clone devbase em ~/workspace/devbase" >&2
+        return 1
+    fi
+    
+    if [ -d ".devcontainer" ]; then
+        echo "⚠️  Aviso: .devcontainer/ já existe neste diretório" >&2
+        read -q "?Sobrescrever? (y/N) " && echo || return 1
+    fi
+    
+    mkdir -p .devcontainer
+    cp "$devbase_path/.devcontainer/devcontainer.json" .devcontainer/
+    cp "$devbase_path/.devcontainer/docker-compose.yml" .devcontainer/
+    
+    # Substituir {{PROJECT_NAME}} pelo nome do projeto (trata espaços corretamente)
+    # Usa | como delimitador no sed para evitar problemas com caracteres especiais
+    sed -i "s|{{PROJECT_NAME}}|$project_name|g" .devcontainer/devcontainer.json
+    
+    echo "✅ Devcontainer criado para '$project_name'!"
+    echo "   Edite .devcontainer/ para adicionar features, portas e serviços."
+}

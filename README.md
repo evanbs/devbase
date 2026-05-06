@@ -30,6 +30,7 @@ Publicada em `ghcr.io/evanbs/devbase`.
 - `rgfzf [pattern]` — busca interativa com rg + fzf
 - `extract <arquivo>` — descompacta qualquer formato
 - `devinfo` — mostra versões de todas as ferramentas
+- `devcontainer-init [nome]` — inicializa devcontainer do template devbase
 
 ## Estrutura do repositório
 
