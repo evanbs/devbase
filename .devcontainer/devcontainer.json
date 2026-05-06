@@ -25,11 +25,33 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "EditorConfig.EditorConfig",
-        "esbenp.prettier-vscode",
-        "dbaeumer.vscode-eslint",
+        // Essenciais
+        "editorconfig.editorconfig",
         "eamodio.gitlens",
-        "humao.rest-client"
+        "streetsidesoftware.code-spell-checker",
+        "gruntfuggly.todo-tree",
+        "christian-kohler.path-intellisense",
+        "sleistner.vscode-fileutils",
+        "mkxml.vscode-filesize",
+        
+        // Docker
+        "ms-azuretools.vscode-containers",
+        
+        // Markdown & Docs
+        "yzhang.markdown-all-in-one",
+        "bierner.markdown-mermaid",
+        
+        // API & HTTP
+        "anweber.vscode-httpyac",
+        
+        // Qualidade
+        "nhoizey.gremlins",
+        "redhat.vscode-xml",
+        
+        // Visual
+        "naumovs.color-highlight",
+        "kisstkondoros.vscode-gutter-preview",
+        "hextorgb.hex-to-rgb"
       ],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "zsh",

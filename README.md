@@ -49,6 +49,46 @@ containers/
 │   └── docker-compose.yml # app devcontainer base
 ```
 
+## Extensões VS Code incluídas
+
+O template inclui 16 extensões universais que são úteis para qualquer tipo de projeto:
+
+### Essenciais (7)
+- **editorconfig.editorconfig** — configuração de editor consistente
+- **eamodio.gitlens** — Git avançado (blame, history, lens)
+- **streetsidesoftware.code-spell-checker** — corretor ortográfico
+- **gruntfuggly.todo-tree** — visualização de TODOs no código
+- **christian-kohler.path-intellisense** — autocomplete de paths
+- **sleistner.vscode-fileutils** — operações de arquivo (rename, move, duplicate)
+- **mkxml.vscode-filesize** — mostra tamanho de arquivo na barra
+
+### Docker (1)
+- **ms-azuretools.vscode-containers** — suporte completo a Docker
+
+### Markdown & Documentação (2)
+- **yzhang.markdown-all-in-one** — Markdown completo
+- **bierner.markdown-mermaid** — diagramas Mermaid
+
+### API & HTTP (1)
+- **anweber.vscode-httpyac** — cliente HTTP para arquivos `.http`
+
+### Qualidade de Código (2)
+- **nhoizey.gremlins** — detecta caracteres invisíveis
+- **redhat.vscode-xml** — suporte a XML
+
+### Visual (3)
+- **naumovs.color-highlight** — highlight de cores no código
+- **kisstkondoros.vscode-gutter-preview** — preview de imagens
+- **hextorgb.hex-to-rgb** — conversor hex/rgb
+
+### Extensões específicas de stack
+
+Extensões para linguagens/frameworks específicos devem ser adicionadas no `devcontainer.json` de cada projeto:
+
+- **Front-end**: Tailwind, auto-rename-tag, live-server, px-to-rem, import-cost
+- **.NET**: csdevkit, csharp, dotnet-runtime  
+- **JS/TS**: Biome, Prettier, ESLint, auto-barrel
+
 ## Uso em projetos
 
 ```bash
