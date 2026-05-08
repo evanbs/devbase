@@ -22,38 +22,10 @@
   ],
 
   // ── VS Code extensions ──────────────────────────────────────────────────
+  // Defina extensões no devcontainer.json do projeto derivado (dev-template),
+  // não aqui — cada stack tem suas próprias necessidades.
   "customizations": {
     "vscode": {
-      "extensions": [
-        // Essenciais
-        "editorconfig.editorconfig",
-        "eamodio.gitlens",
-        "streetsidesoftware.code-spell-checker",
-        "gruntfuggly.todo-tree",
-        "christian-kohler.path-intellisense",
-        "sleistner.vscode-fileutils",
-        "mkxml.vscode-filesize",
-        "Anthropic.claude-code",
-        "saoudrizwan.claude-dev",
-        "openai.chatgpt",
-        
-        // Docker
-        "ms-azuretools.vscode-containers",
-        
-        // Markdown & Docs
-        "yzhang.markdown-all-in-one",
-        "bierner.markdown-mermaid",
-        
-        // API & HTTP
-        "anweber.vscode-httpyac",
-        
-        // Qualidade
-        "nhoizey.gremlins",
-        "redhat.vscode-xml",
-        
-        // Visual
-        "kisstkondoros.vscode-gutter-preview",
-      ],
       "settings": {
         "terminal.integrated.defaultProfile.linux": "zsh",
         "terminal.integrated.profiles.linux": {

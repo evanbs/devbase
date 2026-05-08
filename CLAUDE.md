@@ -3,7 +3,7 @@
 ## Contexto
 
 Repositório de imagem Docker base para desenvolvimento.
-Construída sobre `mcr.microsoft.com/devcontainers/base:ubuntu`.
+Construída sobre `mcr.microsoft.com/devcontainers/base:debian`.
 Publicada em `ghcr.io/evanbs/devbase`.
 
 ## Ambiente do host
@@ -73,19 +73,10 @@ docker push ghcr.io/evanbs/devbase:latest
 3. Se tiver função: adicionar em `config/.functions`
 4. Build local e testar antes de publicar
 
-### Criar .devcontainer para um projeto novo
+### Criar um projeto novo a partir do template
 
-```bash
-cd ~/projetos/nome-do-projeto
-mkdir .devcontainer
-cp ~/projetos/devbase/.devcontainer/devcontainer.json .devcontainer/
-```
-
-Editar `.devcontainer/devcontainer.json`:
-- Substituir `{{PROJECT_NAME}}` pelo nome do projeto
-- Descomentar features da stack do projeto
-- Descomentar portas necessárias
-- Ajustar `postCreateCommand`
+Use o repositório `dev-template` como base — ele já tem configs separadas por stack
+(`base`, `node`, `python`, `java`) prontas para copiar ou usar como GitHub Template.
 
 ## Regras
 
